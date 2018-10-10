@@ -10,6 +10,15 @@
     </parent>
 	
 	<artifactId>donation-rest</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
+
+  <dependencies>
+    <!-- Donation core-->
+    <dependency>
+      <groupId>com.donation</groupId>
+      <artifactId>donation-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 	
 </project>
