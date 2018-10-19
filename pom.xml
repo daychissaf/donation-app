@@ -13,11 +13,15 @@
     <module>donation-repository</module>
     <module>donation-web</module>
     <module>donation-rest</module>
+    <module>donation-api</module>
   </modules>
 
   <properties>
     <java.version>1.8</java.version>
     <spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+    <swagger-version>1.5.19</swagger-version>
+    <servlet-api>2.5</servlet-api>
+    <jackson-version>2.9.5</jackson-version>
   </properties>
 
   <parent>
