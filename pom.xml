@@ -12,8 +12,6 @@
     <module>donation-core</module>
     <module>donation-repository</module>
     <module>donation-web</module>
-    <module>donation-rest</module>
-    <module>donation-api</module>
   </modules>
 
   <properties>
