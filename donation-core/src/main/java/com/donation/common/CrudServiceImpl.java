@@ -1,21 +1,21 @@
 package com.donation.common;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
-public class CrudServiceImpl<T> implements CrudService<T> {
+import java.util.List;
 
-    @Autowired
-    private CrudRepository<T, Long> crudRepository;
+public abstract class CrudServiceImpl<T> implements CrudService<T> {
+
 
     @Autowired
     private ObjectUpdater objectUpdater;
 
+    protected abstract CrudRepository<T, Long> repository();
+
     @Override
     public T add(T object) {
-        return crudRepository.save(object);
+        return repository().save(object);
     }
 
     @Override
@@ -25,21 +25,21 @@ public class CrudServiceImpl<T> implements CrudService<T> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return crudRepository.save(objectToUpdate);
+        return repository().save(objectToUpdate);
     }
 
     @Override
     public void delete(Long id) {
-        crudRepository.delete(id);
+        repository().delete(id);
     }
 
     @Override
     public List<T> getAll() {
-        return (List<T>) crudRepository.findAll();
+        return (List<T>) repository().findAll();
     }
 
     @Override
     public T getById(Long id) {
-        return crudRepository.findOne(id);
+        return repository().findOne(id);
     }
 }

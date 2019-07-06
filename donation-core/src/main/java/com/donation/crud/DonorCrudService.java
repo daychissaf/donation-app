@@ -1,7 +1,7 @@
-package com.donation.donor;
+package com.donation.crud;
 
 import com.donation.common.CrudService;
-import com.donation.model.Donor;
+import com.donation.donor.model.Donor;
 
 public interface DonorCrudService extends CrudService<Donor> {
 }
