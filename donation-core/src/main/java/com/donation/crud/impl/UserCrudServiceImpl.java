@@ -6,6 +6,8 @@ import com.donation.donor.UserCrudRepository;
 import com.donation.donor.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,16 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
 
     @Autowired
     private UserCrudRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Override
+    public User add (User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return user;
+    }
 
     @Override
     public boolean userExists(String email) {
@@ -31,6 +43,17 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+
+            if (user.getEmail().equals(username))
+                return user;
+        }
+        return null;
     }
 
     @Override
