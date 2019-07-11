@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public abstract class CrudServiceImpl<T> implements CrudService<T> {
 
@@ -30,7 +31,10 @@ public abstract class CrudServiceImpl<T> implements CrudService<T> {
 
     @Override
     public void delete(Long id) {
-        repository().delete(id);
+        Optional<T> objectToDelete = repository().findById(id);
+        if (objectToDelete.isPresent()) {
+            repository().delete(objectToDelete.get());
+        }
     }
 
     @Override
@@ -40,6 +44,10 @@ public abstract class CrudServiceImpl<T> implements CrudService<T> {
 
     @Override
     public T getById(Long id) {
-        return repository().findOne(id);
+        Optional<T> object = repository().findById(id);
+        if(object.isPresent()){
+            return object.get();
+        }
+        return null;
     }
 }
