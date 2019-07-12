@@ -24,7 +24,9 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
     @Override
     public User add (User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
+        if(!userExists(user.getEmail())) {
+            userRepository.save(user);
+        }
         return user;
     }
 
@@ -37,7 +39,8 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
         if(newObjectData.getPassword()!=null){
             objectToUpdate.setPassword(newObjectData.getPassword());
         }
-        return this.add(objectToUpdate);
+        userRepository.save(objectToUpdate);
+        return objectToUpdate;
     }
 
     @Override
