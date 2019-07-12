@@ -29,6 +29,14 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
     }
 
     @Override
+    public User update(User user, User newUser) {
+        newUser.setPassword(encoder.encode(newUser.getPassword()));
+        if (newUser.getEmail() == null) newUser.setEmail(user.getEmail());
+        userRepository.save(newUser);
+        return newUser;
+    }
+
+    @Override
     public boolean userExists(String email) {
 
         List<User> users;
