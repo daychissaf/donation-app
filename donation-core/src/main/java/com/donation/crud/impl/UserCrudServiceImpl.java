@@ -30,11 +30,10 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
 
     @Override
     public User update(User objectToUpdate, User newObjectData){
-        if(newObjectData.getEmail()!=null){
-            if(!userExists(newObjectData.getEmail())){
-                objectToUpdate.setEmail(newObjectData.getEmail());
-            }
+        if(newObjectData.getEmail()!=null && !userExists(newObjectData.getEmail())){
+            objectToUpdate.setEmail(newObjectData.getEmail());
         }
+
         if(newObjectData.getPassword()!=null){
             objectToUpdate.setPassword(newObjectData.getPassword());
         }
