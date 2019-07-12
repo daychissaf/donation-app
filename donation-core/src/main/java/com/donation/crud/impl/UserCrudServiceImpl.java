@@ -19,7 +19,7 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
     private UserCrudRepository userRepository;
 
     @Autowired
-    private PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private PasswordEncoder encoder ;
 
     @Override
     public User add (User user) {
