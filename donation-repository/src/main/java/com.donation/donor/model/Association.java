@@ -10,7 +10,7 @@ public class Association {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "ASSOCIATION_SQ")
     private Long id;
 
-    private String associationName;
+    private String name;
 
     public Long getId() {
         return id;
@@ -20,11 +20,11 @@ public class Association {
         this.id = id;
     }
 
-    public String getAssociationName() {
-        return associationName;
+    public String getName() {
+        return name;
     }
 
-    public void setAssociationName(String associationName) {
-        this.associationName = associationName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
