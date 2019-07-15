@@ -2,6 +2,7 @@ package com.donation.conf;
 
 import com.donation.crud.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,7 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       http.cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/api/users").permitAll()
+            .antMatchers(HttpMethod.POST,"/api/users").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/projects").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))
