@@ -19,7 +19,7 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
     private UserCrudRepository userRepository;
 
     @Autowired
-    private PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private PasswordEncoder encoder=new BCryptPasswordEncoder();
 
     @Override
     public User add (User user) {
@@ -37,7 +37,7 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
         }
 
         if(newObjectData.getPassword()!=null){
-            objectToUpdate.setPassword(newObjectData.getPassword());
+            objectToUpdate.setPassword(encoder.encode(newObjectData.getPassword()));
         }
         userRepository.save(objectToUpdate);
         return objectToUpdate;

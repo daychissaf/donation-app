@@ -6,9 +6,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,12 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       http.cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/api/projects").permitAll()
             .antMatchers(HttpMethod.POST,"/api/users").permitAll()
-            .antMatchers(HttpMethod.PUT,"/api/users").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-            .antMatchers(HttpMethod.DELETE,"/api/users").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+            .antMatchers(HttpMethod.GET,"/api/projects").permitAll()
             .anyRequest().authenticated()
-            .anyRequest().hasAuthority("ROLE_ADMIN")
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))
             .addFilter(new JwtAuthorizationFilter(authenticationManager()))
@@ -46,6 +45,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //            .authorities("ROLE_USER");
       auth.userDetailsService(userDetailsService())
               .passwordEncoder(passwordEncoder());
+   }
+
+   @Override
+   public void configure(WebSecurity web) throws Exception {
+      web.ignoring().antMatchers("/v2/api-docs",
+              "/configuration/ui",
+              "/swagger-resources/**",
+              "/configuration/security",
+              "/swagger-ui.html",
+              "/webjars/**"
+              );
    }
 
    @Bean
