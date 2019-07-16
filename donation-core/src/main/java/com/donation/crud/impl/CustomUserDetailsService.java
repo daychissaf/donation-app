@@ -3,14 +3,13 @@ package com.donation.crud.impl;
 import com.donation.crud.UserCrudService;
 import com.donation.donor.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
         return new org.springframework.security.core.userdetails
                 .User(user.getEmail(), user.getPassword(), authorities);
 

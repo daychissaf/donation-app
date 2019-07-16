@@ -21,4 +21,5 @@ public class ProjectCrudController extends CrudController<Project> {
     public CrudService<Project> service() {
         return this.projectService;
     }
+
 }

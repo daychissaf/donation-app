@@ -21,4 +21,5 @@ public class SponsorCrudController extends CrudController<Sponsor> {
     public CrudService<Sponsor> service() {
         return this.sponsorService;
     }
+
 }
