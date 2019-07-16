@@ -26,29 +26,4 @@ public class ProjectCrudController extends CrudController<Project> {
         return this.projectService;
     }
 
-    @Override
-    @Secured("ROLE_ADMIN")
-    @PostMapping
-    public Project add(@Valid @RequestBody Project object) {
-        return service().add(object);
-    }
-
-    @Override
-    @Secured("ROLE_ADMIN")
-    @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable("id") Long id, @Valid @RequestBody Project newObjectData) {
-        Project objectToUpdate = service().getById(id);
-        if (objectToUpdate == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(service().update(objectToUpdate, newObjectData), HttpStatus.OK);
-    }
-
-    @Override
-    @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        service().delete(id);
-    }
-
 }

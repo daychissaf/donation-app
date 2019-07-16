@@ -25,37 +25,4 @@ public class UserCrudController extends CrudController<User> {
     public CrudService<User> service() {
         return this.userService;
     }
-
-    @Override
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
-    @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable("id") Long id, @Valid @RequestBody User newObjectData) {
-        User objectToUpdate = service().getById(id);
-        if (objectToUpdate == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(service().update(objectToUpdate, newObjectData), HttpStatus.OK);
-    }
-
-    @Override
-    @Secured("ROLE_ADMIN")
-    @GetMapping
-    @ResponseBody
-    public List<User> list() {
-        return service().getAll();
-    }
-
-    @Override
-    @Secured({"ROLE_USER","ROLE_ADMIN"})
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        service().delete(id);
-    }
-
-    @Override
-    @Secured("ROLE_ADMIN")
-    @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
-        return service().getById(id);
-    }
 }
