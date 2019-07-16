@@ -21,5 +21,4 @@ public class UserCrudController extends CrudController<User> {
     public CrudService<User> service() {
         return this.userService;
     }
-
 }

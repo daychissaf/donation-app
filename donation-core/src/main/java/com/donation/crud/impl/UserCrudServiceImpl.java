@@ -37,7 +37,7 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
         }
 
         if(newObjectData.getPassword()!=null){
-            objectToUpdate.setPassword(newObjectData.getPassword());
+            objectToUpdate.setPassword(encoder.encode(newObjectData.getPassword()));
         }
         userRepository.save(objectToUpdate);
         return objectToUpdate;

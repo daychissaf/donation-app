@@ -21,4 +21,5 @@ public class AssociationCrudController extends CrudController<Association> {
     public CrudService<Association> service() {
         return this.associationService;
     }
+
 }
