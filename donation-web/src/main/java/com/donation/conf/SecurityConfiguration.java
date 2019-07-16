@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
             .antMatchers(HttpMethod.POST,"/api/account").permitAll()
-            .antMatchers(HttpMethod.GET,"/api/projects/**").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/project/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))
