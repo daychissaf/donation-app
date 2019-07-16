@@ -1,11 +1,13 @@
 package com.donation.web;
 
 import com.donation.crud.*;
-import com.donation.donor.*;
 import com.donation.donor.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,6 @@ public class DataController {
     VideoCrudService videoCrudService;
     @Autowired
     ProjectCrudService projectCrudService;
-    @Autowired
-    PasswordEncoder encoder;
 
     List<Video> list1=new ArrayList<>();
     List<Video> list2=new ArrayList<>();
@@ -37,12 +37,12 @@ public class DataController {
         //add User and Admin                    ****************************************
         User user=new User();
         user.setEmail("user@gmail.com");
-        user.setPassword(encoder.encode("user"));
+        user.setPassword("user");
         userCrudService.add(user);
 
         User admin=new User();
         admin.setEmail("admin@gmail.com");
-        admin.setPassword(encoder.encode("admin"));
+        admin.setPassword("admin");
         //admin.setRole("ADMIN");
         userCrudService.add(admin);
 
