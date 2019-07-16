@@ -19,33 +19,33 @@ public class PublicController {
     ProjectCrudService projectCrudService;
 
     //Everybody can create an account
-    @PostMapping("/signup")
+    @PostMapping("/api/signup")
     public User signUp(@RequestBody User user) {
         return userCrudService.add(user);
     }
 
     //Must be logged in to update your account
     @Secured("ROLE_USER")
-    @PutMapping("/account/{id}")
+    @PutMapping("/api/account/{id}")
     public User update(@PathVariable("id") Long id, @RequestBody User user) {
         return userCrudService.update(userCrudService.getById(id),user);
     }
 
     //Must be logged in to delete your account
     @Secured("ROLE_USER")
-    @DeleteMapping("/account/{id}")
+    @DeleteMapping("/api/account/{id}")
     public void delete(@PathVariable("id") Long id) {
          userCrudService.delete(id);
     }
 
     //Everybody can view all projects
-    @GetMapping("/projects")
+    @GetMapping("/api/projects")
     public List<Project> getProjects() {
         return projectCrudService.getAll();
     }
 
     //Everybody can view a specific project
-    @GetMapping("/projects/{id}")
+    @GetMapping("/api/projects/{id}")
     public Project getProject(@PathVariable("id") Long id) {
         return projectCrudService.getById(id);
     }
