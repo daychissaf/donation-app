@@ -21,21 +21,23 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/account").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/projects/**").permitAll()
-                .antMatchers("/api/populateDatabase").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager()))
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
+
+   @Override
+   protected void configure(HttpSecurity http) throws Exception {
+      http.cors().and()
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.POST,"/api/account").permitAll()
+        .antMatchers(HttpMethod.GET,"/api/project/**").permitAll()
+        .antMatchers("/api/populateDatabase").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+            .addFilter(new JwtAuthorizationFilter(authenticationManager()))
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+   }
+
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
