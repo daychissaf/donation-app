@@ -9,6 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@RequestMapping(value = "/api/")
 @RestController
 public class PublicController {
 
@@ -19,33 +20,33 @@ public class PublicController {
     ProjectCrudService projectCrudService;
 
     //Everybody can create an account
-    @PostMapping("/api/signup")
+    @PostMapping("signup")
     public User signUp(@RequestBody User user) {
         return userCrudService.add(user);
     }
 
     //Must be logged in to update your account
     @Secured("ROLE_USER")
-    @PutMapping("/api/account/{id}")
+    @PutMapping("account/{id}")
     public User update(@PathVariable("id") Long id, @RequestBody User user) {
         return userCrudService.update(userCrudService.getById(id),user);
     }
 
     //Must be logged in to delete your account
     @Secured("ROLE_USER")
-    @DeleteMapping("/api/account/{id}")
+    @DeleteMapping("account/{id}")
     public void delete(@PathVariable("id") Long id) {
          userCrudService.delete(id);
     }
 
     //Everybody can view all projects
-    @GetMapping("/api/projects")
+    @GetMapping("projects")
     public List<Project> getProjects() {
         return projectCrudService.getAll();
     }
 
     //Everybody can view a specific project
-    @GetMapping("/api/projects/{id}")
+    @GetMapping("projects/{id}")
     public Project getProject(@PathVariable("id") Long id) {
         return projectCrudService.getById(id);
     }
