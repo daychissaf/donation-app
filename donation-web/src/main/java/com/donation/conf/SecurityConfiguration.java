@@ -21,6 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+
    @Override
    protected void configure(HttpSecurity http) throws Exception {
       http.cors().and()
@@ -37,41 +38,39 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
    }
 
-   @Override
-   public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//      auth.inMemoryAuthentication()
-//            .withUser("user")
-//            .password(passwordEncoder().encode("password"))
-//            .authorities("ROLE_USER");
-      auth.userDetailsService(userDetailsService())
-              .passwordEncoder(passwordEncoder());
-   }
 
-   @Override
-   public void configure(WebSecurity web) throws Exception {
-      web.ignoring().antMatchers("/v2/api-docs",
-              "/configuration/ui",
-              "/swagger-resources/**",
-              "/configuration/security",
-              "/swagger-ui.html",
-              "/webjars/**"
-              );
-   }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
+    }
 
-   @Bean
-   public UserDetailsService userDetailsService() {
-      return new CustomUserDetailsService();
-   }
-   @Bean
-   public PasswordEncoder passwordEncoder() {
-      return new BCryptPasswordEncoder();
-   }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**"
+        );
+    }
 
-   @Bean
-   public CorsConfigurationSource corsConfigurationSource() {
-      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService();
+    }
 
-      return source;
-   }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+
+        return source;
+    }
 }
