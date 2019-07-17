@@ -45,7 +45,7 @@ public abstract class CrudServiceImpl<T> implements CrudService<T> {
     @Override
     public T getById(Long id) {
         Optional<T> object = repository().findById(id);
-        if(object.isPresent()){
+        if (object.isPresent()) {
             return object.get();
         }
         return null;

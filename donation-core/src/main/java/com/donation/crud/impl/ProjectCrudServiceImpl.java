@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProjectCrudServiceImpl extends CrudServiceImpl<Project> implements ProjectCrudService {
 
-   @Autowired
-   private ProjectCrudRepository projectCrudRepository;
+    @Autowired
+    private ProjectCrudRepository projectCrudRepository;
 
-   @Override
-   protected CrudRepository<Project, Long> repository() {
-      return projectCrudRepository;
-   }
+    @Override
+    protected CrudRepository<Project, Long> repository() {
+        return projectCrudRepository;
+    }
 }

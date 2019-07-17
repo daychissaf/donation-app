@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@SequenceGenerator(name="PROJECT_SQ", sequenceName="project_sequence")
+@SequenceGenerator(name = "PROJECT_SQ", sequenceName = "project_sequence")
 public class Project {
 
     @Id

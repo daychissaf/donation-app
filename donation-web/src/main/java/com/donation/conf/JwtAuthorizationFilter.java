@@ -22,60 +22,60 @@ import java.util.stream.Collectors;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-   private static final Logger log = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
 
-   public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
-      super(authenticationManager);
-   }
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
+        super(authenticationManager);
+    }
 
-   @Override
-   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-         FilterChain filterChain) throws IOException, ServletException {
-      Authentication authentication = getAuthentication(request);
-      if (authentication == null) {
-         filterChain.doFilter(request, response);
-         return;
-      }
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain filterChain) throws IOException, ServletException {
+        Authentication authentication = getAuthentication(request);
+        if (authentication == null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-      SecurityContextHolder.getContext().setAuthentication(authentication);
-      filterChain.doFilter(request, response);
-   }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        filterChain.doFilter(request, response);
+    }
 
-   private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-      String token = request.getHeader(SecurityConstants.TOKEN_HEADER);
-      if (!StringUtils.isEmpty(token) && token.startsWith(SecurityConstants.TOKEN_PREFIX)) {
-         try {
-            byte[] signingKey = SecurityConstants.JWT_SECRET.getBytes();
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+        String token = request.getHeader(SecurityConstants.TOKEN_HEADER);
+        if (!StringUtils.isEmpty(token) && token.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+            try {
+                byte[] signingKey = SecurityConstants.JWT_SECRET.getBytes();
 
-            Jws<Claims> parsedToken = Jwts.parser()
-                  .setSigningKey(signingKey)
-                  .parseClaimsJws(token.replace("Bearer ", ""));
+                Jws<Claims> parsedToken = Jwts.parser()
+                        .setSigningKey(signingKey)
+                        .parseClaimsJws(token.replace("Bearer ", ""));
 
-            String username = parsedToken
-                  .getBody()
-                  .getSubject();
+                String username = parsedToken
+                        .getBody()
+                        .getSubject();
 
-            List<GrantedAuthority> authorities = ((List<?>) parsedToken.getBody()
-                  .get("rol")).stream()
-                  .map(authority -> new SimpleGrantedAuthority((String) authority))
-                  .collect(Collectors.toList());
+                List<GrantedAuthority> authorities = ((List<?>) parsedToken.getBody()
+                        .get("rol")).stream()
+                        .map(authority -> new SimpleGrantedAuthority((String) authority))
+                        .collect(Collectors.toList());
 
-            if (!StringUtils.isEmpty(username)) {
-               return new UsernamePasswordAuthenticationToken(username, null, authorities);
+                if (!StringUtils.isEmpty(username)) {
+                    return new UsernamePasswordAuthenticationToken(username, null, authorities);
+                }
+            } catch (ExpiredJwtException exception) {
+                log.warn("Request to parse expired JWT : {} failed : {}", token, exception.getMessage());
+            } catch (UnsupportedJwtException exception) {
+                log.warn("Request to parse unsupported JWT : {} failed : {}", token, exception.getMessage());
+            } catch (MalformedJwtException exception) {
+                log.warn("Request to parse invalid JWT : {} failed : {}", token, exception.getMessage());
+            } catch (SignatureException exception) {
+                log.warn("Request to parse JWT with invalid signature : {} failed : {}", token, exception.getMessage());
+            } catch (IllegalArgumentException exception) {
+                log.warn("Request to parse empty or null JWT : {} failed : {}", token, exception.getMessage());
             }
-         } catch (ExpiredJwtException exception) {
-            log.warn("Request to parse expired JWT : {} failed : {}", token, exception.getMessage());
-         } catch (UnsupportedJwtException exception) {
-            log.warn("Request to parse unsupported JWT : {} failed : {}", token, exception.getMessage());
-         } catch (MalformedJwtException exception) {
-            log.warn("Request to parse invalid JWT : {} failed : {}", token, exception.getMessage());
-         } catch (SignatureException exception) {
-            log.warn("Request to parse JWT with invalid signature : {} failed : {}", token, exception.getMessage());
-         } catch (IllegalArgumentException exception) {
-            log.warn("Request to parse empty or null JWT : {} failed : {}", token, exception.getMessage());
-         }
-      }
+        }
 
-      return null;
-   }
+        return null;
+    }
 }

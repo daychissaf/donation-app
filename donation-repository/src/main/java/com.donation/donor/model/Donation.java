@@ -3,7 +3,7 @@ package com.donation.donor.model;
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name="DONATION_SQ", sequenceName="donation_sequence")
+@SequenceGenerator(name = "DONATION_SQ", sequenceName = "donation_sequence")
 public class Donation {
 
     @Id

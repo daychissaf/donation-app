@@ -19,24 +19,24 @@ public class UserCrudServiceImpl extends CrudServiceImpl<User> implements UserCr
     private UserCrudRepository userRepository;
 
     @Autowired
-    private PasswordEncoder encoder=new BCryptPasswordEncoder();
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
-    public User add (User user) {
+    public User add(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        if(!userExists(user.getEmail())) {
+        if (!userExists(user.getEmail())) {
             userRepository.save(user);
         }
         return user;
     }
 
     @Override
-    public User update(User objectToUpdate, User newObjectData){
-        if(newObjectData.getEmail()!=null && !userExists(newObjectData.getEmail())){
+    public User update(User objectToUpdate, User newObjectData) {
+        if (newObjectData.getEmail() != null && !userExists(newObjectData.getEmail())) {
             objectToUpdate.setEmail(newObjectData.getEmail());
         }
 
-        if(newObjectData.getPassword()!=null){
+        if (newObjectData.getPassword() != null) {
             objectToUpdate.setPassword(encoder.encode(newObjectData.getPassword()));
         }
         userRepository.save(objectToUpdate);
