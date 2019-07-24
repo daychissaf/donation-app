@@ -1,15 +1,16 @@
 package com.donation;
 
 import com.donation.crud.VideoCrudService;
-import com.donation.donor.model.Video;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import reactor.core.publisher.Flux;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 
 @Service
@@ -17,16 +18,6 @@ public class VideoServiceImpl implements VideoService {
 
     @Autowired
     VideoCrudService videoCrudService;
-
-    @Override
-    public StreamingResponseBody stream(Long idProject) throws FileNotFoundException {
-        Video video = videoCrudService.getRandomVideo(idProject);
-        File videoFile = new File(video.getLink());
-        final InputStream videoFileStream = new FileInputStream(videoFile);
-        return (os) -> {
-            readAndWrite(videoFileStream, os);
-        };
-    }
 
     @Override
     public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
