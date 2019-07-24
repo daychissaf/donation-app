@@ -1,6 +1,6 @@
 package com.donation.conf;
 
-import com.donation.crud.impl.CustomUserDetailsService;
+import com.donation.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

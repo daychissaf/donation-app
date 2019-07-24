@@ -3,16 +3,14 @@ package com.donation.crud.impl;
 import com.donation.common.CrudServiceImpl;
 import com.donation.crud.ProjectCrudService;
 import com.donation.crud.VideoCrudService;
-import com.donation.donor.ProjectCrudRepository;
 import com.donation.donor.VideoCrudRepository;
-import com.donation.donor.model.Project;
 import com.donation.donor.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class VideoCrudServiceImpl extends CrudServiceImpl<Video> implements VideoCrudService {
@@ -32,5 +30,13 @@ public class VideoCrudServiceImpl extends CrudServiceImpl<Video> implements Vide
     public List<Video> getVideosByProject(Long idProject) {
 
         return projectCrudService.getById(idProject).getVideos();
+    }
+
+    @Override
+    public Video getRandomVideo(Long idProject) {
+        Random random = new Random();
+        List<Video> videos = getVideosByProject(idProject);
+        Video video = videos.get(random.nextInt(videos.size()));
+        return video;
     }
 }

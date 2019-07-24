@@ -1,4 +1,4 @@
-package com.donation.web.crud;
+package com.donation;
 
 public class Assets {
 
