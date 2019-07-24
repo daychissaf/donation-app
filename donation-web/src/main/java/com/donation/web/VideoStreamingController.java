@@ -3,6 +3,7 @@ package com.donation.web;
 import com.donation.VideoService;
 import com.donation.crud.VideoCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +12,10 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 import java.io.FileNotFoundException;
 
+@Secured("ROLE_USER")
 @RestController
 @RequestMapping("/api/stream")
 public class VideoStreamingController {
-
-    @Autowired
-    private VideoCrudService videoCrudService;
 
     @Autowired
     private VideoService videoService;
