@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -41,29 +42,35 @@ public class VideoServiceImpl implements VideoService {
         return video;
     }
 
-    @Override
-    public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
+    public byte[] videoToBinaryData(InputStream is) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] data = new byte[2048];
         int read;
         while ((read = is.read(data)) > 0) {
             bos.write(data, 0, read);
         }
-
         byte[] b = bos.toByteArray();
-        int eachSize = b.length / 10;
-        byte[] array1 = Arrays.copyOfRange(b, 0, eachSize);
-        byte[] array2 = Arrays.copyOfRange(b, eachSize, eachSize * 2);
-        byte[] array3 = Arrays.copyOfRange(b, eachSize * 2, eachSize * 3);
-        byte[] array4 = Arrays.copyOfRange(b, eachSize * 3, eachSize * 4);
-        byte[] array5 = Arrays.copyOfRange(b, eachSize * 4, eachSize * 5);
-        byte[] array6 = Arrays.copyOfRange(b, eachSize * 5, eachSize * 6);
-        byte[] array7 = Arrays.copyOfRange(b, eachSize * 6, eachSize * 7);
-        byte[] array8 = Arrays.copyOfRange(b, eachSize * 7, eachSize * 8);
-        byte[] array9 = Arrays.copyOfRange(b, eachSize * 8, eachSize * 9);
-        byte[] array10 = Arrays.copyOfRange(b, eachSize * 9, b.length);
+        return b;
+    }
 
-        Flux flux = Flux.just(array1, array2, array3, array4, array5, array6, array7, array8, array9, array10);
+    public List<byte[]> divideVideo(byte[] b) {
+
+        int eachSize = b.length / 520;
+        List<byte[]> listOfArrays = new ArrayList<>();
+        for (int index = 0; index < 519; index++) {
+            listOfArrays.add(Arrays.copyOfRange(b, eachSize * index, eachSize * (index + 1)));
+        }
+        listOfArrays.add(Arrays.copyOfRange(b, eachSize * 519, b.length));
+        return listOfArrays;
+    }
+
+    @Override
+    public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
+
+        byte[] b = videoToBinaryData(is);
+        List<byte[]> videoChunks = divideVideo(b);
+        Flux flux = Flux.just(videoChunks.toArray());
+
         flux.subscribe(new Subscriber<byte[]>() {
             private Subscription s;
 
