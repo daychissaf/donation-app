@@ -22,14 +22,11 @@ import java.io.InputStream;
 public class VideoStreamingController {
 
     @Autowired
-    private VideoCrudService videoCrudService;
-
-    @Autowired
     private VideoService videoService;
 
     @GetMapping("/{idProject}")
     public StreamingResponseBody stream(@PathVariable Long idProject) throws FileNotFoundException {
-        Video video = videoCrudService.getRandomVideo(idProject);
+        Video video = videoService.getRandomVideo(idProject);
         File videoFile = new File(video.getLink());
         final InputStream videoFileStream = new FileInputStream(videoFile);
         return (os) -> {

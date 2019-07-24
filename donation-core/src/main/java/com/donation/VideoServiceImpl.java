@@ -1,6 +1,8 @@
 package com.donation;
 
+import com.donation.crud.ProjectCrudService;
 import com.donation.crud.VideoCrudService;
+import com.donation.donor.model.Video;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class VideoServiceImpl implements VideoService {
 
     @Autowired
     VideoCrudService videoCrudService;
+
+    @Autowired
+    ProjectCrudService projectCrudService;
+
+
+    @Override
+    public List<Video> getVideosByProject(Long idProject) {
+
+        return projectCrudService.getById(idProject).getVideos();
+    }
+
+    @Override
+    public Video getRandomVideo(Long idProject) {
+        Random random = new Random();
+        List<Video> videos = getVideosByProject(idProject);
+        Video video = videos.get(random.nextInt(videos.size()));
+        return video;
+    }
 
     @Override
     public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
