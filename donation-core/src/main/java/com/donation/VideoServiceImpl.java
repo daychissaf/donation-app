@@ -6,6 +6,7 @@ import com.donation.donor.model.Video;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -27,9 +28,11 @@ public class VideoServiceImpl implements VideoService {
     @Autowired
     ProjectCrudService projectCrudService;
 
+    @Value("${sleep.duration}")
+    private int sleepDuration;
 
-    @Override
-    public List<Video> getVideosByProject(Long idProject) {
+
+    private List<Video> getVideosByProject(Long idProject) {
 
         return projectCrudService.getById(idProject).getVideos();
     }
@@ -42,7 +45,7 @@ public class VideoServiceImpl implements VideoService {
         return video;
     }
 
-    public byte[] videoToBinaryData(InputStream is) throws IOException {
+    private byte[] videoToBinaryData(InputStream is) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] data = new byte[2048];
         int read;
@@ -53,7 +56,7 @@ public class VideoServiceImpl implements VideoService {
         return b;
     }
 
-    public List<byte[]> divideVideo(byte[] b) {
+    private List<byte[]> divideVideo(byte[] b) {
 
         int eachSize = b.length / 520;
         List<byte[]> listOfArrays = new ArrayList<>();
@@ -65,7 +68,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
+    public void emitVideoFrames(final InputStream is, OutputStream os) throws IOException {
 
         byte[] b = videoToBinaryData(is);
         List<byte[]> videoChunks = divideVideo(b);
@@ -77,7 +80,6 @@ public class VideoServiceImpl implements VideoService {
             @Override
             public void onSubscribe(Subscription s) {
                 this.s = s;
-                Assets.videoStopped = false;
                 s.request(1);
 
             }
@@ -90,28 +92,22 @@ public class VideoServiceImpl implements VideoService {
                         os.write(byt);
                     }
                 } catch (IOException e) {
-                    Assets.videoStopped = true;
                 }
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(sleepDuration);
                 } catch (InterruptedException e) {
-                    Assets.videoStopped = true;
                 }
-                if (Assets.videoStopped == false) {
-                    s.request(1);
-                }
+                s.request(1);
             }
 
             @Override
             public void onError(Throwable t) {
-                Assets.videoStopped = true;
             }
 
             @Override
             public void onComplete() {
 
                 System.out.println("video watched");
-                Assets.videoWatched = true;
             }
         });
     }
