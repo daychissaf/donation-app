@@ -28,8 +28,7 @@ public class VideoServiceImpl implements VideoService {
     ProjectCrudService projectCrudService;
 
 
-    @Override
-    public List<Video> getVideosByProject(Long idProject) {
+    private List<Video> getVideosByProject(Long idProject) {
 
         return projectCrudService.getById(idProject).getVideos();
     }
@@ -42,7 +41,7 @@ public class VideoServiceImpl implements VideoService {
         return video;
     }
 
-    public byte[] videoToBinaryData(InputStream is) throws IOException {
+    private byte[] videoToBinaryData(InputStream is) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] data = new byte[2048];
         int read;
@@ -53,7 +52,7 @@ public class VideoServiceImpl implements VideoService {
         return b;
     }
 
-    public List<byte[]> divideVideo(byte[] b) {
+    private List<byte[]> divideVideo(byte[] b) {
 
         int eachSize = b.length / 520;
         List<byte[]> listOfArrays = new ArrayList<>();

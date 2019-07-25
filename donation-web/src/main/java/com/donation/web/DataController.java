@@ -53,7 +53,7 @@ public class DataController {
         Video video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list1.add(video);
         list2.add(video);
@@ -61,14 +61,14 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list1.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_3");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list1.add(video);
 
@@ -80,14 +80,14 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Orange_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list2.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Orange_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list5.add(video);
 
@@ -99,14 +99,14 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("BP_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list2.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("BP_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list5.add(video);
 
@@ -118,21 +118,21 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Lenovo_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list2.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Lenovo_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list4.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Lenovo_3");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list5.add(video);
 
@@ -144,7 +144,7 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Indomie_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list2.add(video);
         list3.add(video);
@@ -152,7 +152,7 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("Indomie_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("/videos/myvideo.mp4");
         videoCrudService.add(video);
         list3.add(video);
 
