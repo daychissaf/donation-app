@@ -65,7 +65,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void readAndWrite(final InputStream is, OutputStream os) throws IOException {
+    public void emitVideoFrames(final InputStream is, OutputStream os) throws IOException {
 
         byte[] b = videoToBinaryData(is);
         List<byte[]> videoChunks = divideVideo(b);
@@ -97,7 +97,7 @@ public class VideoServiceImpl implements VideoService {
                 } catch (InterruptedException e) {
                     Assets.videoStopped = true;
                 }
-                if (Assets.videoStopped == false) {
+                if (!Assets.videoStopped) {
                     s.request(1);
                 }
             }

@@ -9,8 +9,10 @@ import java.util.List;
 
 public interface VideoService {
 
-    void readAndWrite(final InputStream is, OutputStream os) throws IOException;
+    void emitVideoFrames(final InputStream is, OutputStream os) throws IOException;
+
     List<Video> getVideosByProject(Long idProject);
+
     Video getRandomVideo(Long idProject);
 
 }

@@ -1,7 +1,6 @@
 package com.donation.web;
 
 import com.donation.VideoService;
-import com.donation.crud.VideoCrudService;
 import com.donation.donor.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -30,7 +29,7 @@ public class VideoStreamingController {
         File videoFile = new File(video.getLink());
         final InputStream videoFileStream = new FileInputStream(videoFile);
         return (os) -> {
-            videoService.readAndWrite(videoFileStream, os);
+            videoService.emitVideoFrames(videoFileStream, os);
         };
     }
 }
