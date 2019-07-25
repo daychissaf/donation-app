@@ -77,7 +77,6 @@ public class VideoServiceImpl implements VideoService {
             @Override
             public void onSubscribe(Subscription s) {
                 this.s = s;
-                Assets.videoStopped = false;
                 s.request(1);
 
             }
@@ -90,28 +89,22 @@ public class VideoServiceImpl implements VideoService {
                         os.write(byt);
                     }
                 } catch (IOException e) {
-                    Assets.videoStopped = true;
                 }
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
-                    Assets.videoStopped = true;
                 }
-                if (!Assets.videoStopped) {
-                    s.request(1);
-                }
+                s.request(1);
             }
 
             @Override
             public void onError(Throwable t) {
-                Assets.videoStopped = true;
             }
 
             @Override
             public void onComplete() {
 
                 System.out.println("video watched");
-                Assets.videoWatched = true;
             }
         });
     }
