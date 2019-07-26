@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity(name="account")
-@SequenceGenerator(name="USER_SQ", sequenceName="user_sequence")
+@Entity(name = "account")
+@SequenceGenerator(name = "USER_SQ", sequenceName = "user_sequence")
 public class User implements UserDetails {
 
     @Id

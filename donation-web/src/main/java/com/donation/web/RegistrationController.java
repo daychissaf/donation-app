@@ -1,4 +1,4 @@
-package com.donation.web.crud;
+package com.donation.web;
 
 import com.donation.crud.UserCrudService;
 import com.donation.donor.model.User;
@@ -22,7 +22,7 @@ public class RegistrationController {
     @Secured("ROLE_USER")
     @PutMapping("/{id}")
     public User update(@PathVariable("id") Long id, @RequestBody User user) {
-        return userCrudService.update(userCrudService.getById(id),user);
+        return userCrudService.update(userCrudService.getById(id), user);
     }
 
     //Must be logged in to delete your account

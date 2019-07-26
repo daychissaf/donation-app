@@ -1,4 +1,4 @@
-package com.donation.crud.impl;
+package com.donation;
 
 import com.donation.crud.UserCrudService;
 import com.donation.donor.model.User;

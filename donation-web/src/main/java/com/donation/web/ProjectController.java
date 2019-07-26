@@ -1,4 +1,4 @@
-package com.donation.web.crud;
+package com.donation.web;
 
 import com.donation.crud.ProjectCrudService;
 import com.donation.crud.UserCrudService;

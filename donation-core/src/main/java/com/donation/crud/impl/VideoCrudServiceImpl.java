@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class VideoCrudServiceImpl extends CrudServiceImpl<Video> implements VideoCrudService {
 
-   @Autowired
-   private VideoCrudRepository videoCrudRepository;
+    @Autowired
+    private VideoCrudRepository videoCrudRepository;
 
-   @Override protected CrudRepository<Video, Long> repository() {
-      return videoCrudRepository;
-   }
+    @Override
+    protected CrudRepository<Video, Long> repository() {
+        return videoCrudRepository;
+    }
+
 }

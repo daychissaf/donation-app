@@ -14,7 +14,8 @@ public class SponsorCrudServiceImpl extends CrudServiceImpl<Sponsor> implements 
     @Autowired
     private SponsorCrudRepository sponsorRepository;
 
-    @Override protected CrudRepository<Sponsor, Long> repository() {
+    @Override
+    protected CrudRepository<Sponsor, Long> repository() {
         return sponsorRepository;
     }
 }
