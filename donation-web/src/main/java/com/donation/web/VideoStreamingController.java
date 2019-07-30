@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-@Secured("ROLE_USER")
+//@Secured("ROLE_USER")
 @RestController
 @RequestMapping("/api/stream")
 public class VideoStreamingController {
@@ -29,7 +29,7 @@ public class VideoStreamingController {
         File videoFile = new File(video.getLink());
         final InputStream videoFileStream = new FileInputStream(videoFile);
         return (os) -> {
-            videoService.emitVideoFrames(videoFileStream, os);
+            videoService.normalEmitVideoFrames(videoFileStream, os);
         };
     }
 }

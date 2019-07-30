@@ -53,7 +53,7 @@ public class DataController {
         Video video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_1");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("C://Users/asus/Desktop/donation-app/donation-web/src/main/resources/bulb.mp4");
         videoCrudService.add(video);
         list1.add(video);
         list2.add(video);
@@ -61,14 +61,14 @@ public class DataController {
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_2");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("C://Users/asus/Desktop/donation-app/donation-web/src/main/resources/bulb.mp4");
         videoCrudService.add(video);
         list1.add(video);
         //********
         video = new Video();
         video.setSponsor(sponsor);
         video.setTitle("IAM_3");
-        video.setLink("C://Users/SQLI/Downloads/myvideo.mp4");
+        video.setLink("C://Users/asus/Desktop/donation-app/donation-web/src/main/resources/bulb.mp4");
         videoCrudService.add(video);
         list1.add(video);
 
