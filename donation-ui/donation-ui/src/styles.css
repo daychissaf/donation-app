@@ -1,0 +1,12 @@
+
+
+body {
+  background: #ffd89b;
+  background: -webkit-linear-gradient(to bottom, #19547b, #ffd89b);
+  background: linear-gradient(to bottom, #19547b, #ffd89b);
+
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+
