@@ -7,8 +7,8 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ProjectService} from "./services/project.service";
-import { ProjectListComponent } from './project-list/project-list.component';
+import {ProjectService} from "./projects/project.service";
+import { ProjectListComponent } from './projects/project-list.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @NgModule({

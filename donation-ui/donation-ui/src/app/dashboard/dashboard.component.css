@@ -3,20 +3,32 @@
 }
 
 h1 {
-  color: navajowhite;
+  color: #ffd89b;
   font-size: 80px;
 }
 
 h2 {
-  color: navajowhite;
+  color: #ffd89b;
   font-size: 55px;
 }
 
 h5 {
   margin-top: 40px;
-  color: navajowhite;
+  color: #ffd89b;
 }
 
+.statistics1{
+  color: #4e3d34;
+  font-size: 20px;
+  margin-left: 160px;
+
+}
+.statistics2{
+  color: #4e3d34;
+  font-size: 20px;
+  margin-left: 220px;
+
+}
 .small-img {
   height: 250px;
   width: 220px;
@@ -24,6 +36,12 @@ h5 {
   margin-top: 50px;
   margin-left: 50px;
 }
+.hands-img {
+  height: 250px;
+  width: 600px;
+  margin-top: 40px;
+}
+
 .carousel-div {
   padding: 55px;
 }
