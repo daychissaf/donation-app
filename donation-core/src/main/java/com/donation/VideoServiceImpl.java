@@ -81,9 +81,7 @@ public class VideoServiceImpl implements VideoService {
             public void onSubscribe(Subscription s) {
                 this.s = s;
                 s.request(1);
-
             }
-
             @Override
             public void onNext(byte[] list) {
                 System.out.println("sending");
@@ -93,10 +91,10 @@ public class VideoServiceImpl implements VideoService {
                     }
                 } catch (IOException e) {
                 }
-                try {
-                    Thread.sleep(sleepDuration);
-                } catch (InterruptedException e) {
-                }
+//                try {
+//                    Thread.sleep(sleepDuration);
+//                } catch (InterruptedException e) {
+//                }
                 s.request(1);
             }
 
@@ -110,5 +108,14 @@ public class VideoServiceImpl implements VideoService {
                 System.out.println("video watched");
             }
         });
+    }
+
+    @Override
+    public void normalEmitVideoFrames(InputStream is, OutputStream os) throws IOException {
+        byte[] data = new byte[2048];
+        int read;
+        while ((read = is.read(data)) > 0) {
+            os.write(data, 0, read);
+        }
     }
 }

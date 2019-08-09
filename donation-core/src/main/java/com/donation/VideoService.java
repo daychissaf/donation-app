@@ -9,6 +9,7 @@ import java.io.OutputStream;
 public interface VideoService {
 
     void emitVideoFrames(final InputStream is, OutputStream os) throws IOException;
+    void normalEmitVideoFrames(final InputStream is, OutputStream os) throws IOException;
 
     Video getRandomVideo(Long idProject);
 
