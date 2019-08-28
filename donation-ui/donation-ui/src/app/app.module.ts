@@ -7,22 +7,42 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ProjectService} from "./projects/project.service";
-import { ProjectListComponent } from './projects/project-list.component';
-import {DashboardComponent} from "./dashboard/dashboard.component";
+import {ProjectService} from "./project/project.service";
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import {DashboardComponent} from "./carousel/carousel.component";
+import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
+import { SponsorRoutingModule } from './sponsor/sponsor-routing.module';
+import {ProjectRoutingModule} from "./project/project-routing.module";
+import {AssociationRoutingModule} from "./association/association-routing.module";
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import {SponsorModule} from "./sponsor/sponsor.module";
+import {AssociationModule} from "./association/association.module";
+import {VideoModule} from "./video/video.module";
+import { SignInUpComponent } from './sign-in-up/sign-in-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ProjectDetailComponent,
+    NavbarComponent,
+    FooterComponent,
+    SignInUpComponent
   ],
   imports: [
     BrowserModule,
+    SponsorModule,
+    AssociationModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    SponsorRoutingModule,
+    ProjectRoutingModule,
+    AssociationRoutingModule,
+    VideoModule
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]

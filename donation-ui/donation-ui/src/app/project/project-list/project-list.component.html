@@ -1,14 +1,16 @@
+<app-carousel></app-carousel>
 <div class="container marketing">
-
   <div class="row">
     <div class="col-lg-4" *ngFor="let project of projects">
       <div class="bg-trns">
+        <a [routerLink]="['/project', project.id]">
         <img class="rounded-circle" src="https://cdn.britannica.com/s:300x500/18/196818-131-84946E03.jpg"
              alt="Generic placeholder image" width="140" height="140">
-        <h2 style="color: seagreen">{{project.title}}</h2>
-        <p>This is a very very very very very very very very very very very very very very very very very long project
-          description</p>
-        <p><a class="btn btn-outline-success" href="#" role="button">Donate &raquo;</a></p>
+        </a>
+        <h2 style="color: #107050">{{project.title}}</h2>
+        <p>{{project.description}}</p>
+        <p>
+          <button class="btn btn-outline-primary" >Donate &raquo;</button></p>
       </div>
     </div>
   </div>
