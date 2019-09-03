@@ -1,0 +1,8 @@
+<div style="padding: 50px">
+<button class="btn btn-outline-light btn-lg btn-block" id="play" (click)="playVid()" type="button">Play Video</button>
+</div>
+<div style="text-align: center;">
+<video id="myVideo" width="800">
+  <source *ngIf="video" [src]="video.link" type="video/mp4">
+</video>
+</div>

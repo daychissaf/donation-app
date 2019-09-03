@@ -2,9 +2,9 @@ import {Component, OnInit} from "@angular/core";
 
 
 @Component({
-  selector :'dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector :'app-carousel',
+  templateUrl: './carousel.component.html',
+  styleUrls: ['./carousel.component.css']
 })
 
 export class DashboardComponent implements OnInit{

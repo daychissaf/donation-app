@@ -15,15 +15,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-@Secured("ROLE_USER")
+//@Secured("ROLE_USER")
 @RestController
-@RequestMapping("/api/stream")
+@RequestMapping("/api/video")
 public class VideoStreamingController {
 
     @Autowired
     private VideoService videoService;
 
-    @GetMapping("/{idProject}")
+    @GetMapping("/stream/{idProject}")
     public StreamingResponseBody stream(@PathVariable Long idProject) throws FileNotFoundException {
         Video video = videoService.getRandomVideo(idProject);
         File videoFile = new File(video.getLink());
@@ -31,5 +31,11 @@ public class VideoStreamingController {
         return (os) -> {
             videoService.emitVideoFrames(videoFileStream, os);
         };
+    }
+
+    @GetMapping("/{idProject}")
+    public Video getVideo(@PathVariable Long idProject){
+        Video video = videoService.getRandomVideo(idProject);
+        return video;
     }
 }
