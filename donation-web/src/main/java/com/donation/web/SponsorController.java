@@ -21,4 +21,5 @@ public class SponsorController {
     public List<Sponsor> getSponsors() {
         return sponsorCrudService.getAll();
     }
+
 }

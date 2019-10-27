@@ -7,19 +7,17 @@ import {Association} from "./association";
 })
 export class AssociationService {
 
-  private baseUrl='http://localhost:8080';
-
   constructor(private http : HttpClient) { }
 
   getAssociations() : Promise<Association[]> {
-    return this.http.get(this.baseUrl + '/api/association')
+    return this.http.get('/api/association')
       .toPromise()
       .then(response => response as Association[])
       .catch(this.handleError);
   }
 
   getAssociation(id: number): Promise<Association> {
-    return this.http.get(this.baseUrl + '/api/associations/'+id)
+    return this.http.get('/api/associations/'+id)
       .toPromise()
       .then(response => response as Association)
       .catch(this.handleError);

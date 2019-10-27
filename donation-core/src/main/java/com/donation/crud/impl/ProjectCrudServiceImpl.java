@@ -63,6 +63,10 @@ public class ProjectCrudServiceImpl extends CrudServiceImpl<Project> implements 
             objectToUpdate.setAssociation(associationCrudService.getById(newObjectData.getAssociation().getId()));
         }
 
+        if (newObjectData.getImgPath() != null) {
+            objectToUpdate.setImgPath(newObjectData.getImgPath());
+        }
+
         List<Video> videos = newObjectData.getVideos();
         if (videos != null) {
             List<Video> newVideos = new ArrayList<>();

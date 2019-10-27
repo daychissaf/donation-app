@@ -7,14 +7,19 @@ import {Video} from "./video";
 })
 export class VideoService {
 
-  private baseUrl='http://localhost:8080';
-
   constructor(private http : HttpClient) { }
 
   getVideo(): Promise<Video> {
-    return this.http.get(this.baseUrl + '/api/video/1')
+    return this.http.get('/api/video/1')
       .toPromise()
       .then(response => response as Video)
+      .catch(this.handleError);
+  }
+
+  getVideos(): Promise<Video[]> {
+    return this.http.get('/api/')
+      .toPromise()
+      .then(response => response as Video[])
       .catch(this.handleError);
   }
 

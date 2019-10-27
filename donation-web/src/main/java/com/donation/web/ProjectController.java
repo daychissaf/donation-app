@@ -32,4 +32,5 @@ public class ProjectController {
     public Project getProject(@PathVariable("id") Long id) {
         return projectCrudService.getById(id);
     }
+
 }

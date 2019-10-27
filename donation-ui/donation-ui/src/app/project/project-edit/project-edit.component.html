@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">
+      Title
+    </label>
+    <input id="title" type="text" [(ngModel)]="project.title" name="title">
+  </div>
+
+  <div>
+    <label for="description">
+      Description
+    </label>
+    <input id="description" type="text" [(ngModel)]="project.description" name="description">
+  </div>
+
+  <div>
+    <label for="association">
+      Association
+    </label>
+    <select id="association" [(ngModel)]="project.association" name="association">
+      <option *ngFor="let association of associations" [ngValue]="association">{{association.name}}</option>
+    </select>
+  </div>
+
+  <button class="button" type="submit">Save</button>
+</form>

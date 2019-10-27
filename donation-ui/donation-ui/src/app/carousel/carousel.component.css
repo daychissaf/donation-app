@@ -1,9 +1,5 @@
-.bg-color{
-  background-color: #001f3f;
-}
-
 h1 {
-  color: #3e2e3e;
+  color: #5E366A;
   font-size: 80px;
 }
 
@@ -17,18 +13,10 @@ h5 {
   color: #3e2e3e;
 }
 
-.statistics1{
-  color: #4e3d34;
-  font-size: 20px;
-  margin-left: 160px;
-
+.bg-blue {
+  color: #12A2FF;
 }
-.statistics2{
-  color: #4e3d34;
-  font-size: 20px;
-  margin-left: 220px;
 
-}
 .small-img {
   height: 250px;
   width: 220px;

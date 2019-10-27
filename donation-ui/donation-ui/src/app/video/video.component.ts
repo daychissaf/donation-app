@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {VideoService} from "./video.service";
 import {Video} from "./video";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-video',
@@ -10,7 +11,11 @@ import {Video} from "./video";
 export class VideoComponent implements OnInit {
 
   private video : Video;
-  constructor(private videoService: VideoService) {
+  private barValue = 0;
+  private interval: any;
+  name: any;
+  constructor(private videoService: VideoService,
+              private modalService: NgbModal) {
 
     document.addEventListener("visibilitychange", function () {
       var vid = <HTMLVideoElement>document.getElementById("myVideo");
@@ -32,6 +37,7 @@ export class VideoComponent implements OnInit {
     var vid = <HTMLVideoElement>document.getElementById("myVideo");
     vid.play();
     document.getElementById("play").style.display = "none";
+    this.move();
 
   }
 
@@ -39,4 +45,22 @@ export class VideoComponent implements OnInit {
     this.videoService.getVideo()
       .then(video => this.video = video);
   }
+
+  move() {
+
+    this.interval = setInterval(() => {
+      if(this.barValue < 100) {
+        this.barValue++;
+      }
+      else {
+        clearInterval(this.interval);
+      }
+    }, 200);
+
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
 }
