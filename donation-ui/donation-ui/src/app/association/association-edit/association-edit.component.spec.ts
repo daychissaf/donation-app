@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectCrudComponent } from './project-crud.component';
+import { AssociationEditComponent } from './association-edit.component';
 
-describe('ProjectCrudComponent', () => {
-  let component: ProjectCrudComponent;
-  let fixture: ComponentFixture<ProjectCrudComponent>;
+describe('AssociationEditComponent', () => {
+  let component: AssociationEditComponent;
+  let fixture: ComponentFixture<AssociationEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectCrudComponent ]
+      declarations: [ AssociationEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectCrudComponent);
+    fixture = TestBed.createComponent(AssociationEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

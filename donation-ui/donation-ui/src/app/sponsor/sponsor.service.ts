@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Project} from "../project/project";
 import {Sponsor} from "./sponsor";
+import {catchError, retry} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SponsorService {
   private baseUrl='http://localhost:8080';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   constructor(private http : HttpClient) { }
 
@@ -26,7 +32,12 @@ export class SponsorService {
   }
 
   createSponsor(){}
-  updateSponsor(){}
+
+  updateSponsor(id: number, newSponsorData: Sponsor) {
+    return this.http.put('/api/sponsors/'+ id, JSON.stringify(newSponsorData), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   deleteSponsor(){}
 
   private handleError(error: any) : Promise<any> {

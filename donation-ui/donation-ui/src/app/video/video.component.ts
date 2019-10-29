@@ -29,12 +29,15 @@ export class VideoComponent implements OnInit {
     })
   }
 
+
+
   ngOnInit() {
     this.getVideo();
   }
 
   playVid() {
     var vid = <HTMLVideoElement>document.getElementById("myVideo");
+    var bar = document.getElementById("myBar");
     vid.play();
     document.getElementById("play").style.display = "none";
     this.move();

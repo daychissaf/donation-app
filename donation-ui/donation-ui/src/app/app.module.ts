@@ -21,11 +21,10 @@ import {SponsorModule} from "./sponsor/sponsor.module";
 import {AssociationModule} from "./association/association.module";
 import {VideoModule} from "./video/video.module";
 import {SignInUpComponent} from './sign-in-up/sign-in-up.component';
-import {ProjectCrudComponent} from "./project/project-crud/project-crud.component";
 import {ProjectEditComponent} from "./project/project-edit/project-edit.component";
 import {ProjectAddComponent} from "./project/project-add/project-add.component";
 import {VideoRoutingModule} from "./video/video-routing.module";
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { LoginComponent } from './login/login.component';
     ProjectListComponent,
     ProjectEditComponent,
     ProjectDetailComponent,
-    ProjectCrudComponent,
     ProjectAddComponent,
     NavbarComponent,
     FooterComponent,

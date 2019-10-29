@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Association} from "./association";
+import {catchError, retry} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssociationService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   constructor(private http : HttpClient) { }
 
@@ -24,7 +31,10 @@ export class AssociationService {
   }
 
   createAssociation(){}
-  updateAssociation(){}
+  updateAssociation(id: number, newAssociationData: Association) {
+    return this.http.put('/api/associations/'+ id, JSON.stringify(newAssociationData), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
   deleteAssociation(){}
 
   private handleError(error: any) : Promise<any> {

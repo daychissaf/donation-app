@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">
+      Title
+    </label>
+    <input id="title" type="text" [(ngModel)]="association.name" name="title">
+  </div>
+
+  <div>
+    <label for="description">
+      Description
+    </label>
+    <input id="description" type="text" [(ngModel)]="association.imgPath" name="description">
+  </div>
+
+  <button class="button" type="submit">Save</button>
+  <button class="btn btn-danger" type="submit">Delete</button>
+</form>

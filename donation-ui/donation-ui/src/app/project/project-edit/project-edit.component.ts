@@ -5,7 +5,6 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AssociationService} from "../../association/association.service";
 import {Association} from "../../association/association";
-import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: 'app-project-edit',
@@ -17,12 +16,13 @@ export class ProjectEditComponent implements OnInit {
   res: any;
   associations: Association[];
 
-  private sub : Subscription;
+  private sub: Subscription;
+
   constructor(
-              private projectService: ProjectService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private associationService: AssociationService
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private associationService: AssociationService
   ) {
 
   }
