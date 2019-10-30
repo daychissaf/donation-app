@@ -5,6 +5,8 @@ import {Association} from "../../association/association";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../project.service";
 import {AssociationService} from "../../association/association.service";
+import {VideoService} from "../../video/video.service";
+import {Video} from "../../video/video";
 
 @Component({
   selector: 'app-project-add',
@@ -14,26 +16,28 @@ import {AssociationService} from "../../association/association.service";
 export class ProjectAddComponent implements OnInit {
 
 
-  project: Project;
+  project = new Project();
   associations: Association[];
+  videos: Video[];
 
   constructor(private projectService: ProjectService,
-              private associationService: AssociationService,) { }
+              private associationService: AssociationService,
+              private videoService: VideoService) { }
 
   ngOnInit(): void {
-    this.getAssociations();
-  }
-
-
-  getAssociations() {
     this.associationService.getAssociations()
       .then(associations => this.associations = associations);
+    this.videoService.getVideos()
+      .then(videos => this.videos = videos);
   }
 
-  createProject() {
-    if (this.project.title != null) {
-      this.projectService.createProject(this.project);
-    }
+  onSubmit() {
+    this.project.videos = this.videos;
+    this.projectService.createProject(this.project)
+      .subscribe(data => alert(data), error => alert(error));
   }
 
+  onChange($event: Event, video: Video) {
+    this.videos.push(video);
+  }
 }

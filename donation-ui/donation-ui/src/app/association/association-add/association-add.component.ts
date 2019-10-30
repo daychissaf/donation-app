@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Association} from "../association";
+import {AssociationService} from "../association.service";
 
 @Component({
   selector: 'app-association-add',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssociationAddComponent implements OnInit {
 
-  constructor() { }
+  association = new Association();
+
+  constructor(private associationService: AssociationService,
+              ) { }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.associationService.createAssociation(this.association)
+      .subscribe(data => alert(data), error => alert(error));
+  }
 }

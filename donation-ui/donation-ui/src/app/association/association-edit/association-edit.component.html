@@ -1,18 +1,26 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="title">
-      Title
-    </label>
-    <input id="title" type="text" [(ngModel)]="association.name" name="title">
-  </div>
+<div class="col-4 ">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" [(ngModel)]="association.name" name="name" class="form-control">
+    </div>
 
-  <div>
-    <label for="description">
-      Description
-    </label>
-    <input id="description" type="text" [(ngModel)]="association.imgPath" name="description">
-  </div>
+    <div class="form-group">
+      <label for="image">
+        Image
+      </label>
+      <input id="image" type="text" [(ngModel)]="association.imgPath" name="image" class="form-control">
+    </div>
 
-  <button class="button" type="submit">Save</button>
-  <button class="btn btn-danger" type="submit">Delete</button>
-</form>
+    <p>
+      <button class="btn btn-primary btn-block" type="submit">Save</button>
+    </p>
+
+  </form>
+
+  <p>
+    <button class="btn btn-danger btn-block" type="submit" (click)="deleteAssociation()">Delete</button>
+  </p>
+</div>

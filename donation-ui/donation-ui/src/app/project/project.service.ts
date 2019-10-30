@@ -5,7 +5,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, retry} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {AuthenticationService} from "../authentication/authentication.service";
-import {User} from "../user/user";
 
 @Injectable()
 export class ProjectService {
@@ -35,22 +34,18 @@ export class ProjectService {
   }
 
   createProject(project: Project) {
-
-    return this.http.post('/api/projects/', project);
-
+    return this.http.post('/api/projects/', JSON.stringify(project), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   updateProject(id: number, newProjectData: Project): Observable<unknown> {
-    alert("got to service");
-    return this.http.put('/api/projects/'+ id, JSON.stringify(newProjectData), this.httpOptions)
+    return this.http.put('/api/projects/' + id, JSON.stringify(newProjectData), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
-
   }
 
   deleteProject(id: number) {
-
-    return this.http.delete('/api/projects/' + id);
-
+    return this.http.delete('/api/projects/' + id, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   private handleError(error: any): Promise<any> {

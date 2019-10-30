@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/api/sponsor").permitAll()
         .antMatchers("/api/sponsors/**").permitAll()
         .antMatchers("/api/associations/**").permitAll()
+        .antMatchers("/api/videos/**").permitAll()
         .antMatchers("/api/video/**").permitAll()
         .antMatchers("/api/association").permitAll()
             .anyRequest().authenticated()

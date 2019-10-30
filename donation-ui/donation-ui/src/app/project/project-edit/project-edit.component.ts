@@ -5,6 +5,8 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AssociationService} from "../../association/association.service";
 import {Association} from "../../association/association";
+import {Video} from "../../video/video";
+import {VideoService} from "../../video/video.service";
 
 @Component({
   selector: 'app-project-edit',
@@ -17,12 +19,15 @@ export class ProjectEditComponent implements OnInit {
   associations: Association[];
 
   private sub: Subscription;
+  videos: Video[];
+  newVideos: Video[];
 
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
     private router: Router,
-    private associationService: AssociationService
+    private associationService: AssociationService,
+    private videoService: VideoService,
   ) {
 
   }
@@ -37,6 +42,8 @@ export class ProjectEditComponent implements OnInit {
 
     this.associationService.getAssociations()
       .then(associations => this.associations = associations);
+    this.videoService.getVideos()
+      .then(videos => this.videos = videos);
   }
 
   onSubmit() {
@@ -44,10 +51,17 @@ export class ProjectEditComponent implements OnInit {
   }
 
   updateProject() {
-
+    this.project.videos = this.newVideos;
     this.projectService.updateProject(this.project.id, this.project)
       .subscribe(data => alert(data), error => alert(error));
-
   }
 
+  deleteProject() {
+    this.projectService.deleteProject(this.project.id)
+      .subscribe(data => alert(data), error => alert(error));
+  }
+
+  onChange($event: Event, video: Video) {
+    this.newVideos.push(video);
+  }
 }

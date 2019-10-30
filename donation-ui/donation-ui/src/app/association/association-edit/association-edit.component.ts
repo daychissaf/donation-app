@@ -31,4 +31,9 @@ export class AssociationEditComponent implements OnInit {
     this.associationService.updateAssociation(this.association.id, this.association)
       .subscribe(data => alert(data), error => alert(error));
   }
+
+  deleteAssociation() {
+    this.associationService.deleteAssociation(this.association.id)
+      .subscribe(data => alert(data), error => alert(error));
+  }
 }

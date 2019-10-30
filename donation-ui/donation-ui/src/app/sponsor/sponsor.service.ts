@@ -31,14 +31,20 @@ export class SponsorService {
       .catch(this.handleError);
   }
 
-  createSponsor(){}
+  createSponsor(sponsor: Sponsor){
+    return this.http.post('/api/sponsors/', sponsor, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
 
   updateSponsor(id: number, newSponsorData: Sponsor) {
     return this.http.put('/api/sponsors/'+ id, JSON.stringify(newSponsorData), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  deleteSponsor(){}
+  deleteSponsor(id: number){
+    return this.http.delete('/api/sponsors/'+ id, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError));
+  }
 
   private handleError(error: any) : Promise<any> {
     console.error('Some error occured', error);

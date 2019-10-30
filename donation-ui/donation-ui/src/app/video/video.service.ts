@@ -17,7 +17,7 @@ export class VideoService {
   }
 
   getVideos(): Promise<Video[]> {
-    return this.http.get('/api/')
+    return this.http.get('/api/videos/')
       .toPromise()
       .then(response => response as Video[])
       .catch(this.handleError);

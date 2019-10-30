@@ -1,1 +1,21 @@
-<p>sponsor-add works!</p>
+<div class="col-4 ">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" [(ngModel)]="sponsor.name" name="name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="image">
+        Image
+      </label>
+      <input id="image" type="text" [(ngModel)]="sponsor.imgPath" name="image" class="form-control">
+    </div>
+
+    <p>
+      <button class="btn btn-primary btn-block" type="submit">Save</button>
+    </p>
+  </form>
+</div>
