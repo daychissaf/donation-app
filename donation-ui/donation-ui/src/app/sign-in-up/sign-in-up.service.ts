@@ -1,3 +1,4 @@
+
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "../user/user";
@@ -6,7 +7,6 @@ import {User} from "../user/user";
   providedIn: 'root'
 })
 export class SignInUpService {
-
 
   constructor(private  http: HttpClient) {
 

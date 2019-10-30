@@ -8,13 +8,13 @@ import { AssociationEditComponent } from './association-edit/association-edit.co
 import {FormsModule} from "@angular/forms";
 
 
-
 @NgModule({
+
   declarations: [AssociationListComponent, AssociationDetailComponent, AssociationAddComponent, AssociationEditComponent],
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModules
   ]
 })
 export class AssociationModule { }
