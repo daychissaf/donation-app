@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AssociationListComponent } from './association-list/association-list.component';
-import { AssociationDetailComponent } from './association-detail/association-detail.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AssociationListComponent} from './association-list/association-list.component';
+import {AssociationDetailComponent} from './association-detail/association-detail.component';
 import {RouterModule} from "@angular/router";
-import { AssociationAddComponent } from './association-add/association-add.component';
-import { AssociationEditComponent } from './association-edit/association-edit.component';
+import {AssociationAddComponent} from './association-add/association-add.component';
+import {AssociationEditComponent} from './association-edit/association-edit.component';
 import {FormsModule} from "@angular/forms";
 
 
@@ -14,7 +14,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     RouterModule,
-    FormsModules
+    FormsModule,
   ]
 })
-export class AssociationModule { }
+export class AssociationModule {
+}
