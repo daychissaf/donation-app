@@ -9,7 +9,9 @@ import {FormsModule} from "@angular/forms";
 
 
 
+
 @NgModule({
+
   declarations: [SponsorListComponent, SponsorDetailComponent, SponsorEditComponent, SponsorAddComponent],
   imports: [
     CommonModule,

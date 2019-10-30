@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {VideoService} from "./video.service";
 import {Video} from "./video";
@@ -29,8 +30,6 @@ export class VideoComponent implements OnInit {
     })
   }
 
-
-
   ngOnInit() {
     this.getVideo();
   }
@@ -41,7 +40,6 @@ export class VideoComponent implements OnInit {
     vid.play();
     document.getElementById("play").style.display = "none";
     this.move();
-
   }
 
   getVideo() {
@@ -65,5 +63,4 @@ export class VideoComponent implements OnInit {
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
-
 }

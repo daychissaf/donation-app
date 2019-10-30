@@ -3,6 +3,7 @@ import { Project} from "../project";
 import {ProjectService} from "../project.service";
 import {User} from "../../user/user";
 
+
 @Component({
   selector: 'project-list',
   templateUrl: './project-list.component.html',
