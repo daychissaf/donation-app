@@ -15,6 +15,7 @@ export class VideoComponent implements OnInit {
   private barValue = 0;
   private interval: any;
   name: any;
+  playing = false;
   constructor(private videoService: VideoService,
               private modalService: NgbModal) {
 
@@ -38,7 +39,7 @@ export class VideoComponent implements OnInit {
     var vid = <HTMLVideoElement>document.getElementById("myVideo");
     var bar = document.getElementById("myBar");
     vid.play();
-    document.getElementById("play").style.display = "none";
+    this.playing = true;
     this.move();
   }
 

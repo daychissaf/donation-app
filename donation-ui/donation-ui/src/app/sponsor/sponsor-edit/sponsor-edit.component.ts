@@ -35,11 +35,11 @@ export class SponsorEditComponent implements OnInit {
 
   onSubmit() {
     this.sponsorService.updateSponsor(this.sponsor.id, this.sponsor)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 
   deleteSponsor() {
     this.sponsorService.deleteSponsor(this.sponsor.id)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 }

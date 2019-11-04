@@ -34,7 +34,7 @@ export class ProjectAddComponent implements OnInit {
   onSubmit() {
     this.project.videos = this.videos;
     this.projectService.createProject(this.project)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 
   onChange($event: Event, video: Video) {

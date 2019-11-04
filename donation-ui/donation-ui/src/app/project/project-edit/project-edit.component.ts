@@ -53,12 +53,12 @@ export class ProjectEditComponent implements OnInit {
   updateProject() {
     this.project.videos = this.newVideos;
     this.projectService.updateProject(this.project.id, this.project)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 
   deleteProject() {
     this.projectService.deleteProject(this.project.id)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 
   onChange($event: Event, video: Video) {

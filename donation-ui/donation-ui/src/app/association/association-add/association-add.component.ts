@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Association} from "../association";
 import {AssociationService} from "../association.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-association-add',
@@ -12,6 +13,7 @@ export class AssociationAddComponent implements OnInit {
   association = new Association();
 
   constructor(private associationService: AssociationService,
+              private modalService: NgbModal,
               ) { }
 
   ngOnInit() {
@@ -19,6 +21,10 @@ export class AssociationAddComponent implements OnInit {
 
   onSubmit() {
     this.associationService.createAssociation(this.association)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 }

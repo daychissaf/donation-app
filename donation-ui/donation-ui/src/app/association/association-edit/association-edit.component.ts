@@ -29,11 +29,11 @@ export class AssociationEditComponent implements OnInit {
 
   onSubmit() {
     this.associationService.updateAssociation(this.association.id, this.association)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 
   deleteAssociation() {
     this.associationService.deleteAssociation(this.association.id)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 }

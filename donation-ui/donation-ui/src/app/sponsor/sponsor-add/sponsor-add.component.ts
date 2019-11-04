@@ -18,6 +18,6 @@ export class SponsorAddComponent implements OnInit {
 
   onSubmit() {
     this.sponsorService.createSponsor(this.sponsor)
-      .subscribe(data => alert(data), error => alert(error));
+      .subscribe(data => alert(JSON.stringify(data)), error => alert(error));
   }
 }

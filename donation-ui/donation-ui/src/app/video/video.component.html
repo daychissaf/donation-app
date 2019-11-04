@@ -17,7 +17,7 @@
 
 <div style="text-align: center;">
   <div style="padding: 20px">
-  <button class="btn btn-light" id="play" (click)="playVid()" type="button">Play Video</button>
+  <button *ngIf="!playing" class="btn btn-light" id="play" (click)="playVid()" type="button">Play Video</button>
   </div>
 <video id="myVideo" width="800">
   <source *ngIf="video" [src]="video.link" type="video/mp4">
