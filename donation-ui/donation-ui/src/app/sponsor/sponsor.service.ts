@@ -1,52 +1,23 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Project} from "../project/project";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Sponsor} from "./sponsor";
-import {catchError, retry} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SponsorService {
-  private baseUrl='http://localhost:8080';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+
+  constructor(private http: HttpClient) {
   }
 
-  constructor(private http : HttpClient) { }
-
   getSponsors(): Promise<Sponsor[]> {
-    return this.http.get(this.baseUrl + '/api/sponsor')
+    return this.http.get('/api/sponsor')
       .toPromise()
       .then(response => response as Sponsor[])
       .catch(this.handleError);
   }
 
-  getSponsor(id: number): Promise<Sponsor> {
-    return this.http.get(this.baseUrl + '/api/sponsors/'+id)
-      .toPromise()
-      .then(response => response as Sponsor)
-      .catch(this.handleError);
-  }
-
-  createSponsor(sponsor: Sponsor){
-    return this.http.post('/api/sponsors/', sponsor, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
-  }
-
-  updateSponsor(id: number, newSponsorData: Sponsor) {
-    return this.http.put('/api/sponsors/'+ id, JSON.stringify(newSponsorData), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
-  }
-
-  deleteSponsor(id: number){
-    return this.http.delete('/api/sponsors/'+ id, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
-  }
-
-  private handleError(error: any) : Promise<any> {
+  private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
   }

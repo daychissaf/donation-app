@@ -1,7 +1,5 @@
 <div class="div-margin">
-  <div style="text-align: center; padding: 20px">
-    <button class="btn btn-primary" routerLink="/addAssociation">Add Association</button>
-  </div>
+
 <div class="container marketing">
   <div class="row">
     <div class="col-lg-4" *ngFor="let association of associations">
@@ -11,7 +9,6 @@
              alt="Generic placeholder image" width="140" height="140">
         </a>
         <h2 style="color: #107050">{{association.name}}</h2>
-        <button class="btn btn-outline-primary" [routerLink]="['/editAssociation', association.id]">Edit &raquo;</button>
       </div>
     </div>
   </div>

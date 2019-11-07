@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { VideoComponent } from './video.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {VideoComponent} from './video.component';
 import {NgbProgressbarModule} from "@ng-bootstrap/ng-bootstrap";
 import {RouterModule} from "@angular/router";
 
@@ -15,4 +15,5 @@ import {RouterModule} from "@angular/router";
     RouterModule
   ]
 })
-export class VideoModule { }
+export class VideoModule {
+}
