@@ -1,14 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SponsorListComponent } from './sponsor-list/sponsor-list.component';
-import { SponsorDetailComponent } from './sponsor-detail/sponsor-detail.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SponsorListComponent} from './sponsor-list/sponsor-list.component';
+import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [SponsorListComponent, SponsorDetailComponent],
+
+  declarations: [SponsorListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule
   ]
 })
-export class SponsorModule { }
+export class SponsorModule {
+}

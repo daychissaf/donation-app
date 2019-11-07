@@ -12,6 +12,7 @@ public class Project {
     private Long id;
     private String title;
     private String description;
+    private String imgPath;
 
     @ManyToOne
     private Association association;
@@ -57,5 +58,13 @@ public class Project {
 
     public void setAssociation(Association association) {
         this.association = association;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {ProjectService} from "../project.service";
 import {Subscription} from "rxjs";
 import {Project} from "../project";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import {User} from "../../user/user";
 
 
 @Component({
@@ -13,11 +15,15 @@ import {Project} from "../project";
 export class ProjectDetailComponent implements OnInit {
 
   private sub : Subscription;
-  project: Project;
+  public project: Project;
+  private user: User;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private projectService: ProjectService) { }
+              private projectService: ProjectService,
+              private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.user = x);
+  }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {

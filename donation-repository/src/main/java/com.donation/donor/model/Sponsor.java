@@ -10,6 +10,15 @@ public class Sponsor {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SPONSOR_SQ")
     private Long id;
     private String name;
+    private String imgPath;
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 
     public Long getId() {
         return id;
@@ -26,4 +35,5 @@ public class Sponsor {
     public void setName(String name) {
         this.name = name;
     }
+
 }

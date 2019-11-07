@@ -3,7 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ProjectDetailComponent} from "./project-detail/project-detail.component";
 
 const routes: Routes = [
-  { path: 'project/:id', component: ProjectDetailComponent }
+  {path: 'project/:id', component: ProjectDetailComponent},
 ];
 
 @NgModule({
@@ -11,4 +11,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class ProjectRoutingModule {}
+export class ProjectRoutingModule {
+}

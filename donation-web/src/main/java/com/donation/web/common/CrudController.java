@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Secured("ROLE_ADMIN")
+//@Secured("ROLE_ADMIN")
 public abstract class CrudController<T> {
 
     public abstract CrudService<T> service();

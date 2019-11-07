@@ -1,33 +1,31 @@
 import {Injectable} from "@angular/core";
 import {Project} from "./project";
 
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from "../authentication/authentication.service";
 
 @Injectable()
 export class ProjectService {
-  private baseUrl='http://localhost:8080';
 
-  constructor( private  http: HttpClient) {}
+  constructor(private  http: HttpClient,
+              private authenticationService: AuthenticationService) {
+  }
 
   getProjects(): Promise<Project[]> {
-    return this.http.get(this.baseUrl + '/api/project/')
+    return this.http.get('/api/project/')
       .toPromise()
       .then(response => response as Project[])
       .catch(this.handleError);
   }
 
-  getProject(id: number) : Promise<Project> {
-    return this.http.get(this.baseUrl + '/api/project/'+id)
+  getProject(id: number): Promise<Project> {
+    return this.http.get('/api/project/' + id)
       .toPromise()
       .then(response => response as Project)
       .catch(this.handleError);
   }
 
-  createProject(){}
-  updateProject(){}
-  deleteProject(){}
-
-  private handleError(error: any) : Promise<any> {
+  private handleError(error: any): Promise<any> {
     console.error('Some error occured', error);
     return Promise.reject(error.message || error);
   }

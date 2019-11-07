@@ -1,14 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AssociationListComponent } from './association-list/association-list.component';
-import { AssociationDetailComponent } from './association-detail/association-detail.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AssociationListComponent} from './association-list/association-list.component';
+import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [AssociationListComponent, AssociationDetailComponent],
+
+  declarations: [AssociationListComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule,
   ]
 })
-export class AssociationModule { }
+export class AssociationModule {
+}

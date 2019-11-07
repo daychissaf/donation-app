@@ -4,8 +4,10 @@
   <div class="row">
     <div class="col-lg-4" *ngFor="let sponsor of sponsors">
       <div class="bg-trns">
-        <img class="rounded-circle" src="https://cdn.britannica.com/s:300x500/18/196818-131-84946E03.jpg"
+        <a [routerLink]="['/sponsor', sponsor.id]">
+        <img class="rounded-circle" *ngIf="sponsor" [src]="sponsor.imgPath"
              alt="Generic placeholder image" width="140" height="140">
+        </a>
         <h2 style="color: #107050">{{sponsor.name}}</h2>
       </div>
     </div>
